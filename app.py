@@ -31,7 +31,7 @@ def context(): return "\n".join(str(r["drug1"]) + " + " + str(r["drug2"]) + " | 
 def ask(q):
     if not q.strip(): return "اكتبي سؤالج أول"
     if len(df) == 0: return "ماكو تداخلات مراجعة بالقاعدة هسه."
-    try: return client.models.generate_content(model="gemini-3.8-flash", contents=rules + context() + "\n\nالسؤال: " + q).text
+    try: return client.models.generate_content(model="gemini-1.5-flash", contents=rules + context() + "\n\nالسؤال: " + q).text
     except Exception: return "السيرفر مشغول هسه، جربي بعد شوية."
 
 tab1, tab2 = st.tabs(["فحص التداخلات", "اسألي"])
