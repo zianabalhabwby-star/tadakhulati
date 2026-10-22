@@ -31,8 +31,8 @@ def context(): return "\n".join(str(r["drug1"]) + " + " + str(r["drug2"]) + " | 
 def ask(q):
     if not q.strip(): return "اكتبي سؤالج أول"
     if len(df) == 0: return "ماكو تداخلات مراجعة بالقاعدة هسه."
-    try: return client.models.generate_content(model="gemini-1.5-flash", contents=rules + context() + "\n\nالسؤال: " + q).text
-    except Exception: return "السيرفر مشغول هسه، جربي بعد شوية."
+    try: return client.models.generate_content(model="gemini-3.8-flash", contents=rules + context() + "\n\nالسؤال: " + q).text
+        except Exception as e: return "خطأ: " + str(e)[:300]
 
 tab1, tab2 = st.tabs(["فحص التداخلات", "اسألي"])
 chosen = tab1.multiselect("اختاري الأدوية (2 أو أكثر)", drugs)
